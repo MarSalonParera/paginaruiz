@@ -1,0 +1,268 @@
+body{
+    background-color: #f5f5f5;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* PRODUCTOS */
+
+.productos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 40px;
+}
+
+/* TARJETA */
+
+.producto{
+    width: 250px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.producto:hover{
+    transform: scale(1.03);
+}
+
+/* IMAGEN */
+
+.producto img{
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+}
+
+/* NOMBRE */
+
+.producto h3{
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #222;
+}
+
+/* PRECIO */
+
+.precio{
+    font-size: 32px;
+    font-weight: bold;
+    color: #003049;
+}
+
+.precio-antiguo{
+    text-decoration: line-through;
+    color: gray;
+    margin-left: 10px;
+}
+
+/* OPINIONES */
+
+.opiniones{
+    margin-top: 10px;
+    color: #ffb703;
+    font-weight: bold;
+}
+
+/* ENVÍO */
+
+.envio{
+    margin-top: 10px;
+    color: green;
+    font-weight: bold;
+}
+
+/* BOTÓN */
+
+.boton{
+    margin-top: 30px;
+    width: 100%;
+    background-color: #0056d2;
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 12px;
+    font-size: 22px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.boton:hover{
+    background-color: #003f9e;
+}
+.producto-completo{
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+    padding: 50px;
+}
+
+/* IMAGEN */
+
+.imagen-producto img{
+    width: 450px;
+    border-radius: 15px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+}
+
+/* INFORMACIÓN */
+
+.info-producto{
+    max-width: 600px;
+}
+
+.descripcion h2{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.descripcion p{
+    font-size: 18px;
+    color: #555;
+}
+
+.caracteristicas{
+    margin-top: 30px;
+}
+
+.caracteristicas li{
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+/* TABLA */
+
+.tabla-caracteristicas{
+    width: 90%;
+    margin: auto;
+    margin-bottom: 60px;
+}
+
+.tabla-caracteristicas h3{
+    font-size: 35px;
+    margin-bottom: 25px;
+}
+
+.table{
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.producto-completo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    padding: 80px;
+    width: 100%;
+    margin: auto;
+}
+
+/* IMAGEN */
+
+.imagen-producto img{
+    width: 500px;
+    border-radius: 15px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+}
+
+/* TEXTO */
+
+.info-producto{
+    max-width: 550px;
+}
+
+.info-producto h2{
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.precio{
+    font-size: 45px;
+    font-weight: bold;
+    color: #003049;
+}
+
+.precio-antiguo{
+    text-decoration: line-through;
+    color: gray;
+    margin-left: 10px;
+    font-size: 25px;
+}
+
+.opiniones{
+    margin-top: 15px;
+    color: #ffb703;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.envio{
+    margin-top: 15px;
+    color: green;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.descripcion-texto{
+    margin-top: 20px;
+    font-size: 22px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* BOTÓN */
+
+.boton{
+    margin-top: 25px;
+    width: 100%;
+    background-color: #0056d2;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.boton:hover{
+    background-color: #003f9e;
+}
+
+/* CATEGORÍAS */
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 50px;
+}
+
+/* TARJETAS */
+
+.categoria{
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+}
+
+.categoria:hover{
+    transform: scale(1.03);
+    background-color: #f0f0f0;
+}
