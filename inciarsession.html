@@ -36,79 +36,50 @@ href="./css/style.css">
         </div>
 </nav>
 
-<div class="container mt-5">
-    <h2>Iniciar Sesión</h2></a>
-
+   <div class="login-container">
+    <h2>Iniciar Sesión</h2>
     <form id="loginForm">
-
-        <!-- Nombre -->
-        <div class="mb-3">
-            <label class="form-label">Nombre</label>
-
-            <input 
-            type="text" 
-            class="form-control" 
-            id="nombre"
-            required>
+        <div class="input-group">
+            <label for="usuario">Usuario</label>
+            <input type="text" id="usuario" placeholder="Ingresa tu usuario" required>
         </div>
-
-        <!-- Email -->
-        <div class="mb-3">
-            <label class="form-label">Correo</label>
-
-            <input 
-            type="email" 
-            class="form-control" 
-            id="email"
-            required>
+        <div class="input-group">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
         </div>
-
-        <!-- Contraseña -->
-        <div class="mb-3">
-            <label class="form-label">Contraseña</label>
-
-            <input 
-            type="password" 
-            class="form-control" 
-            id="password"
-            required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">
-            <a href="index.html"> 
-            Iniciar sesión
-        </button>
-
+        <button type="submit">Ingresar</button>
     </form>
+    <p id="mensaje"></p>
+</div>
 
-</div>
-<div class="footer">
-    <footer class="bg-light text-center text-lg-start">
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          © 2024 Copyright:
-          <a class="text-dark" href="#">TechnologieDuRoussillon.com</a>
-        </div>
-      </footer>
-</div>
 <script>
+    // Base de datos simulada (solo para el ejemplo)
+    const usuarioValido = "admin";
+    const passwordValido = "123456";
 
-document.getElementById("loginForm")
-.addEventListener("submit", function(e){
+    const formulario = document.getElementById('loginForm');
+    const mensajeDiv = document.getElementById('mensaje');
 
-    e.preventDefault();
+    formulario.addEventListener('submit', function(evento) {
+        // Evita que la página se recargue al enviar el formulario
+        evento.preventDefault(); 
 
-    // Obtener nombre
-    let nombre = document.getElementById("nombre").value;
+        const usuarioIngresado = document.getElementById('usuario').value;
+        const passwordIngresado = document.getElementById('password').value;
 
-    // Guardar sesión
-    localStorage.setItem("nombre", nombre);
-
-    // Ir al index
-    window.location.href = "index.html";
-
-});
-
+        if (usuarioIngresado === usuarioValido && passwordIngresado === passwordValido) {
+            mensajeDiv.style.color = "green";
+            mensajeDiv.textContent = "¡Inicio de sesión exitoso! Redirigiendo...";
+            
+            // Simula una redirección tras iniciar sesión
+            setTimeout(() => {
+                window.location.href = "index.html"; 
+            }, 1000);
+        } else {
+            mensajeDiv.style.color = "red";
+            mensajeDiv.textContent = "Usuario o contraseña incorrectos.";
+        }
+    });
 </script>
-
 </body>
 </html>
