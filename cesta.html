@@ -18,103 +18,116 @@ href="./css/style.css">
 </head>
 <body class="p-5">
 
-    <!-- CESTA -->
-    <h3>
-        🛒 Mi cesta: 
-        <span id="contador">0</span>
-    </h3>
+
+    <h3>🛒 Mi cesta: <span id="contador">0</span></h3>
 
     <hr>
 
-    <!-- PRODUCTO -->
-    <div class="card p-3 w-25">
-
-        <h4>Monitor Gaming</h4>
-
-        <p>199€</p>
-
-        <!-- AÑADIR -->
-        <button 
-        class="btn btn-primary mb-2"
-        onclick="añadirProducto('Monitor Gaming')">
-
-            Añadir producto
-
-        </button>
-
-        <!-- COMPRAR -->
-        <button 
-        class="btn btn-success"
-        onclick="comprar()">
-
-            Comprar
-
-        </button>
-
+    <div id="productosList" class="d-flex gap-3 flex-wrap">
+        <!-- Productos de ejemplo -->
     </div>
 
-    <div class="card p-3 w-25">
+    <div class="mt-4">
+        <button class="btn btn-success" id="comprarBtn">Comprar</button>
+    </div>
 
-        <h4>Portátil HP</h4>
+    <hr>
+    <h4>Contenido de la cesta</h4>
+    <div id="cartItems"></div>
 
-        <p>799€</p>
+<script src="./auth-cart.js"></script>
+<script>
+// Productos de ejemplo
+const productosEjemplo = [
+    {name: 'Monitor Gaming', price: 199},
+    {name: 'Portátil HP', price: 799},
+    {name: 'Teclado Mecánico', price: 79}
+];
 
-        <!-- AÑADIR -->
-        <button 
-        class="btn btn-primary mb-2"
-        onclick="añadirProducto('Portátil HP')">
+const productosList = document.getElementById('productosList');
 
-            Añadir producto
+function renderProductos(){
+    productosList.innerHTML = '';
+    productosEjemplo.forEach((p, i)=>{
+        const card = document.createElement('div');
+        card.className = 'card p-3';
+        card.style.width = '220px';
+        card.innerHTML = `<h5>${p.name}</h5><p>${p.price}€</p><button class="btn btn-primary" data-i="${i}">Añadir</button>`;
+        productosList.appendChild(card);
+    });
+}
 
-        </button>
+renderProductos();
 
-        <!-- COMPRAR -->
-        <button 
-        class="btn btn-success"
-        onclick="comprar()">
-
-            Comprar
-
-        </button>
-    <script>
-
-        // Obtener cesta guardada
-        let cesta = JSON.parse(localStorage.getItem("cesta")) || [];
-
-        // Mostrar contador
+productosList.addEventListener('click', (e)=>{
+    if(e.target.tagName === 'BUTTON'){
+        const idx = e.target.getAttribute('data-i');
+        const prod = productosEjemplo[idx];
+        addToCart({name: prod.name, price: prod.price});
         actualizarContador();
+        alert('Añadido: ' + prod.name);
+        renderCartItems();
+    }
+});
 
-        // Añadir producto
-        function añadirProducto(producto){
+function actualizarContador(){
+    const count = getCart().length;
+    document.getElementById('contador').textContent = count;
+    const cc = document.getElementById('cartCount');
+    if(cc) cc.textContent = '('+ count +')';
+}
 
-            // Añadir a la cesta
-            cesta.push(producto);
+document.getElementById('comprarBtn').addEventListener('click', ()=>{
+    window.location.href = 'cobrar.html';
+});
 
-            // Guardar
-            localStorage.setItem("cesta", JSON.stringify(cesta));
+// Inicializar contador
+actualizarContador();
+renderCartItems();
 
-            // Actualizar número
-            actualizarContador();
+function renderCartItems(){
+    const items = getCart();
+    const box = document.getElementById('cartItems');
+    if(!box) return;
+    if(items.length === 0){ box.innerHTML = '<p>La cesta está vacía.</p>'; return; }
+    box.innerHTML = '';
+    let total = 0;
+    items.forEach((it, i)=>{
+        total += (parseFloat(it.price) || 0);
+        const div = document.createElement('div');
+        div.className = 'd-flex align-items-center justify-content-between p-2 border mb-2';
+        const imgHtml = it.img ? `<img src="${it.img}" style="width:60px;height:60px;object-fit:cover;margin-right:10px">` : '';
+        const priceText = it.price ? (it.price + '€') : '';
+        div.innerHTML = `
+            <div class="d-flex align-items-center">
+                ${imgHtml}
+                <div>
+                    <div><strong>${it.name || it.title || 'Producto'}</strong></div>
+                    <div><small>${priceText}</small></div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-sm btn-danger" data-remove="${i}">Eliminar</button>
+            </div>`;
+        box.appendChild(div);
+    });
+    const totalDiv = document.createElement('div');
+    totalDiv.className = 'mt-3';
+    totalDiv.innerHTML = `<h5>Total: ${total}€</h5>`;
+    box.appendChild(totalDiv);
 
-        }
+    // attach remove handlers
+    box.querySelectorAll('button[data-remove]').forEach(btn=>{
+        btn.addEventListener('click', function(e){
+            const idx = parseInt(this.getAttribute('data-remove'));
+            if(!isNaN(idx)){
+                const c = getCart(); c.splice(idx,1); saveCart(c); actualizarContador(); renderCartItems();
+            }
+        });
+    });
+}
 
-        // Actualizar contador
-        function actualizarContador(){
-
-            document.getElementById("contador").innerHTML =
-            cesta.length;
-
-        }
-
-        // Comprar
-        function comprar(){
-
-            // Ir a cobrar.html
-            window.location.href = "cobrar.html";
-
-        }
-
-    </script>
+</script>
 
 </body>
 </html>

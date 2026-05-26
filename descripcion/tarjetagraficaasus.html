@@ -46,7 +46,7 @@ href="../css/style.css">
         <div class="d-flex align-items-center gap-4 me-5">
 
             <!-- MI CUENTA -->
-            <a href="./inciarsession.html" 
+            <a id="miCuentaLink" href="./inciarsession.html" 
             class="text-decoration-none text-dark fw-bold">
 
                 <div class="d-flex align-items-center gap-2">
@@ -63,9 +63,9 @@ href="../css/style.css">
             </a>
 
             <!-- MI CESTA -->
-            <a href="#" 
+            <a href="../cesta.html" 
             class="text-decoration-none text-dark fw-bold">
-                MI CESTA
+                MI CESTA <span id="cartCount">(0)</span>
             </a>
 
         </div>
@@ -121,7 +121,7 @@ href="../css/style.css">
         </p>
 
         <!-- BOTÓN -->
-        <button class="boton">
+        <button id="addBtn" class="boton">
             Añadir producto
         </button>
 
@@ -186,5 +186,32 @@ href="../css/style.css">
         </div>
       </footer>
 </div>
+    <script src="../auth-cart.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        // Asegura que la nav muestre el contador
+        if(window.updateNav) updateNav();
+
+        var btn = document.getElementById('addBtn');
+        if(!btn) return;
+        btn.addEventListener('click', function(){
+            var titleEl = document.querySelector('.info-producto h2');
+            var priceEl = document.querySelector('.info-producto .precio');
+            var imgEl = document.querySelector('.imagen-producto img');
+            var title = titleEl ? titleEl.textContent.trim() : 'Producto';
+            var priceText = priceEl ? priceEl.textContent.replace('€','').trim() : '0';
+            var price = parseFloat(priceText.replace(',','.')) || 0;
+            var img = imgEl ? imgEl.src : '';
+            var item = { id: 'p_' + Date.now(), name: title, title: title, price: price, img: img, qty: 1 };
+            if(window.addToCart){
+                addToCart(item);
+                if(window.updateNav) updateNav();
+                alert('Producto añadido a la cesta');
+            } else {
+                alert('Funcionalidad de carrito no disponible');
+            }
+        });
+    });
+    </script>
 </body>
 </html>

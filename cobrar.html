@@ -24,15 +24,16 @@ href="./css/style.css">
 
         <hr>
 
+        <form id="payForm">
         <div class="mb-3">
 
             <label class="form-label">
                 Número de tarjeta
             </label>
 
-            <input 
+            <input id="cardNumber"
             type="text" 
-            class="form-control">
+            class="form-control" placeholder="4242 4242 4242 4242" required>
 
         </div>
 
@@ -42,9 +43,9 @@ href="./css/style.css">
                 Nombre del titular
             </label>
 
-            <input 
+            <input id="cardName"
             type="text" 
-            class="form-control">
+            class="form-control" required>
 
         </div>
 
@@ -54,15 +55,14 @@ href="./css/style.css">
                 CVV
             </label>
 
-            <input 
+            <input id="cardCvv"
             type="password" 
-            class="form-control">
+            class="form-control" required>
 
         </div>
 
-        <button class="btn btn-success">
-            Pagar
-        </button>
+        <button class="btn btn-success" type="submit">Pagar</button>
+        </form>
 
     </div>
 <div>
@@ -77,4 +77,20 @@ href="./css/style.css">
       </footer>
 </div>
 </body>
+<script src="./auth-cart.js"></script>
+<script>
+document.getElementById('payForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    // Pago simulado
+    const cart = getCart();
+    if(cart.length === 0){ alert('La cesta está vacía'); return; }
+
+    const total = cart.reduce((s,it)=> s + (it.price||0), 0);
+    const order = createOrder({items: cart, total});
+    clearCart();
+    alert('Pago simulado OK. Pedido creado: ' + order.id + '\nTotal: ' + total + '€');
+    window.location.href = 'cuenta.html';
+});
+</script>
 </html>

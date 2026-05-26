@@ -47,17 +47,20 @@ href="./css/style.css">
         <div class="d-flex align-items-center gap-4 me-5">
 
             <!-- MI CUENTA -->
-            <a href="./inciarsession.html" 
+            <a href="#" id="miCuentaLink" 
             class="text-decoration-none text-dark fw-bold">
 
                 <div class="d-flex align-items-center gap-2">
 
                     <!-- PERFIL -->
                     <div class="perfil" id="perfil">
+<<<<<<< HEAD
                         
+=======
+>>>>>>> b3b8535 (login logout hecho)
                     </div>
 
-                    <span>
+                    <span id="textoCuenta">
                         MI CUENTA
                     </span>
 
@@ -66,13 +69,10 @@ href="./css/style.css">
             </a>
 
             <!-- MI CESTA -->
-            <a href="cesta.html" 
+            <a href="cesta.html" id="miCestaLink"
             class="text-decoration-none text-dark fw-bold">
 
-                🛒 MI CESTA 
-                <span id="contadorCesta">
-                    0
-                </span>
+                🛒 MI CESTA <span id="cartCount">(0)</span>
 
             </a>
 
@@ -148,32 +148,9 @@ href="./css/style.css">
         </div>
       </footer>
 </div>
-<script>
-
-    // =========================
-    // SESIÓN
-    // =========================
-
-    let nombre = localStorage.getItem("nombre");
-
-    if(nombre){
-
-        let inicial = nombre.charAt(0).toUpperCase();
-
-        document.getElementById("perfil").innerHTML = inicial;
-
-    }
-
-    // =========================
-    // CESTA
-    // =========================
-
-    let cesta = JSON.parse(localStorage.getItem("cesta")) || [];
-
-    document.getElementById("contadorCesta").innerHTML =
-    cesta.length;
-
-</script>
+<script src="./auth-cart.js"></script>
+</body>
+</html>
 
 
 </body>

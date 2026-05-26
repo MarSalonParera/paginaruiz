@@ -36,6 +36,7 @@ href="./css/style.css">
         </div>
 </nav>
 
+<<<<<<< HEAD
    <div class="login-container">
     <h2>Iniciar Sesión</h2>
     <form id="loginForm">
@@ -48,10 +49,41 @@ href="./css/style.css">
             <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
         </div>
         <button type="submit">Ingresar</button>
+=======
+<div class="container mt-5">
+    <h2 id="formTitle">Iniciar Sesión</h2>
+
+    <div class="mb-3">
+        <button class="btn btn-outline-primary" id="toggleForm">¿No tienes cuenta? Regístrate</button>
+    </div>
+
+    <form id="authForm">
+
+        <div class="mb-3" id="nombreGroup" style="display:none;">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Correo</label>
+            <input type="email" class="form-control" id="email" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="submitAuth">Iniciar sesión</button>
+
+        <button type="button" class="btn btn-danger ms-2" id="googleBtn">Continuar con Google (demo)</button>
+
+>>>>>>> b3b8535 (login logout hecho)
     </form>
     <p id="mensaje"></p>
 </div>
 
+<<<<<<< HEAD
 <script>
     // Base de datos simulada (solo para el ejemplo)
     const usuarioValido = "admin";
@@ -66,6 +98,55 @@ href="./css/style.css">
 
         const usuarioIngresado = document.getElementById('usuario').value;
         const passwordIngresado = document.getElementById('password').value;
+=======
+</div>
+<div class="footer">
+    <footer class="bg-light text-center text-lg-start">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2024 Copyright:
+          <a class="text-dark" href="#">TechnologieDuRoussillon.com</a>
+        </div>
+      </footer>
+</div>
+<script src="./auth-cart.js"></script>
+<script>
+// Manejo simple de formulario: toggle registro/login
+let signup = false;
+const toggleBtn = document.getElementById('toggleForm');
+const nombreGroup = document.getElementById('nombreGroup');
+const formTitle = document.getElementById('formTitle');
+const submitBtn = document.getElementById('submitAuth');
+
+toggleBtn.addEventListener('click', ()=>{
+    signup = !signup;
+    nombreGroup.style.display = signup ? 'block' : 'none';
+    submitBtn.textContent = signup ? 'Crear cuenta' : 'Iniciar sesión';
+    formTitle.textContent = signup ? 'Crear cuenta' : 'Iniciar sesión';
+    toggleBtn.textContent = signup ? '¿Ya tienes cuenta? Inicia sesión' : '¿No tienes cuenta? Regístrate';
+});
+
+document.getElementById('authForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const pass = document.getElementById('password').value;
+
+    if(signup){
+        const res = signUp({name: name || email.split('@')[0], email, password: pass});
+        if(!res.success){ alert(res.message); return; }
+        window.location.href = 'index.html';
+    } else {
+        const res = signIn(email, pass);
+        if(!res.success){ alert(res.message); return; }
+        window.location.href = 'index.html';
+    }
+});
+
+document.getElementById('googleBtn').addEventListener('click', ()=>{
+    googleSignIn();
+    window.location.href = 'index.html';
+});
+>>>>>>> b3b8535 (login logout hecho)
 
         if (usuarioIngresado === usuarioValido && passwordIngresado === passwordValido) {
             mensajeDiv.style.color = "green";

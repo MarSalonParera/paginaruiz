@@ -25,39 +25,57 @@ href="./css/style.css">
         </div>
     </nav>
 <div class="container mt-5">
-    <h2>Formulario de Registro</h2>
+    <h2>Mi cuenta</h2>
 
-    <form>
-        <!-- Nombre -->
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Introduce tu nombre">
-        </div>
+    <div id="userBox" class="mb-4">
+        <!-- Info de usuario -->
+    </div>
 
-        <!-- Apellidos -->
-        <div class="mb-3">
-            <label for="apellidos" class="form-label">Apellidos</label>
-            <input type="text" class="form-control" id="apellidos" placeholder="Introduce tus apellidos">
-        </div>
+    <h4>Pedidos</h4>
+    <div id="ordersBox"></div>
 
-        <!-- Email -->
-        <div class="mb-3">
-            <label for="email" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control" id="email" placeholder="ejemplo@email.com">
-        </div>
+    <div class="mt-4">
+        <button id="logoutBtn" class="btn btn-secondary">Cerrar sesión</button>
+    </div>
 
-        <!-- Contraseña -->
-        <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password" placeholder="Introduce tu contraseña">
-        </div>
-
-        <!-- Botón -->
-        <button type="submit" class="btn btn-primary">
-            Registrarse
-        </button>
-    </form>
 </div>
+<script src="./auth-cart.js"></script>
+<script>
+function renderAccount(){
+    const user = getCurrentUser();
+    const userBox = document.getElementById('userBox');
+    const ordersBox = document.getElementById('ordersBox');
+    if(!user){
+        userBox.innerHTML = '<p>No has iniciado sesión. <a href="inciarsession.html">Inicia sesión</a></p>';
+        ordersBox.innerHTML = '';
+        return;
+    }
+
+    userBox.innerHTML = `<p><strong>Nombre:</strong> ${user.name}</p><p><strong>Email:</strong> ${user.email}</p>`;
+
+    const ordersKey = 'orders_'+ user.id;
+    const orders = JSON.parse(localStorage.getItem(ordersKey) || '[]');
+    if(orders.length === 0) ordersBox.innerHTML = '<p>No tienes pedidos.</p>';
+    else{
+        ordersBox.innerHTML = '';
+        orders.slice().reverse().forEach(o=>{
+            const div = document.createElement('div');
+            div.className = 'card p-3 mb-2';
+            div.innerHTML = `<div><strong>${o.id}</strong> - ${new Date(o.date).toLocaleString()}</div><div>Total: ${o.total}€</div><div>Items: ${o.items.map(i=>i.name).join(', ')}</div>`;
+            ordersBox.appendChild(div);
+        });
+    }
+}
+
+document.getElementById('logoutBtn').addEventListener('click', ()=>{
+    signOut();
+    window.location.href = 'index.html';
+});
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    renderAccount();
+});
+</script>
 <div class="footer">
     <footer class="bg-light text-center text-lg-start">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
