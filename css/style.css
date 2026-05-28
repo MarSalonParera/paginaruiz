@@ -397,3 +397,192 @@ body{
     background:#2d4f91;
     color:white;
 }
+
+/* Estilos básicos para limpiar el menú */
+.menu-principal, .sub-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Alinea los elementos principales en horizontal */
+.menu-principal > li {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-principal a {
+  display: block;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+/* Oculta las subcategorías por defecto */
+.sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  z-index: 1000;
+}
+
+/* Fuerza a los subelementos a apilarse verticalmente */
+.sub-menu li {
+  display: block;
+}
+
+/* Muestra el menú al pasar el cursor sobre el elemento padre */
+.tiene-desplegable:hover .sub-menu {
+  display: block;
+}
+
+/* Cambio de color estético al pasar el cursor */
+.menu-principal a:hover {
+  background-color: #ddd;
+}
+
+/* ================= SLIDER ================= */
+
+.slider-container{
+    position:relative;
+    width:100%;
+    height:500px;
+    overflow:hidden;
+}
+
+.slider{
+    width:100%;
+    height:100%;
+    position:relative;
+}
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    transition:opacity 0.5s ease;
+}
+
+.slide.active{
+    opacity:1;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.slider-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0.5);
+    color:white;
+    border:none;
+    padding:18px;
+    font-size:30px;
+    cursor:pointer;
+    z-index:100;
+}
+
+.prev{
+    left:20px;
+}
+
+.next{
+    right:20px;
+}
+
+.slider-btn:hover{
+    background:rgba(0,0,0,0.8);
+}
+
+
+.categorias-grid{
+
+    width:95%;
+    margin:50px auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:30px;
+
+}
+
+
+.categoria-card{
+
+    background:#000;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    text-decoration:none;
+
+    color:white;
+
+    transition:0.3s;
+
+    text-align:center;
+
+    padding-bottom:20px;
+
+    border:1px solid #222;
+
+}
+
+/* HOVER */
+
+.categoria-card:hover{
+
+    transform:translateY(-5px);
+
+    border:1px solid #555;
+
+}
+
+
+
+.categoria-card img{
+
+    width:100%;
+
+    height:180px;
+
+    object-fit:cover;
+
+    border-radius:20px;
+
+}
+
+
+.categoria-card h3{
+
+    font-size:22px;
+
+    margin-top:20px;
+
+    font-weight:bold;
+
+}
+
+
+
+.categoria-card p{
+
+    margin-top:10px;
+
+    color:#ccc;
+
+    font-size:16px;
+
+}

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Technologie du Roussillon</title>
+    <title>Forever run</title>
 
     <!-- BOOTSTRAP -->
     <link 
@@ -22,25 +22,15 @@
 
 <!-- ================= NAVBAR ================= -->
 
-<nav class="navbar-custom">
-
-    <div class="navbar-container">
-
-        <!-- IZQUIERDA -->
-        <div class="izquierda-navbar">
-
-       <div class="sidebar">
-
-    <!-- BOTON -->
-    <div class="sidebar-btn" id="sidebarBtn">
-
-        ☰ Todas las Categorías
-
-    </div>
-
-    <!-- MENU -->
-    <div class="sidebar-menu" id="sidebarMenu">
-
+<nav class="navegacion">
+  <ul class="menu-principal">
+    <li><a href="#">Inicio</a></li>
+    
+    <!-- Elemento con subcategorías -->
+    <li class="tiene-desplegable">
+      <a href="#">Categorías ▾</a>
+      <ul class="sub-menu">
+        
         <a href="./odinadors.html">💻 Ordenadores</a>
 
         <a href="./components.html">🛠️ Componentes</a>
@@ -59,8 +49,21 @@
 
         <a href="./consoles.html">🎮 Gaming</a>
 
-    </div>
+      </ul>
+    </li>
+    
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
 
+<nav class="navbar-custom">
+
+    <div class="navbar-container">
+
+        <!-- IZQUIERDA -->
+        <div class="izquierda-navbar">
+
+       <div class="sidebar">
 </div>
 
             <!-- LOGO -->
@@ -71,7 +74,7 @@
                 </div>
 
                 <h1 class="titulo">
-                    Technologie du Roussillon
+                    Forever run
                 </h1>
 
             </div>
@@ -97,7 +100,7 @@
         <div class="menu-derecha">
 
             <!-- CUENTA -->
-            <a href="login.html">
+            <a href="inciarsession.html">
 
                 <div class="cuenta-box">
 
@@ -137,16 +140,16 @@
     <!-- SLIDES -->
     <div class="slider">
 
-        <div class="slide">
-            <img src="img/banner1.jpg" alt="">
+        <div class="slide active">
+            <img src="img/banner1.webp" alt="">
         </div>
 
         <div class="slide">
-            <img src="img/banner2.jpg" alt="">
+            <img src="img/Black-Friday-Banner2.jpg" alt="">
         </div>
 
         <div class="slide">
-            <img src="img/banner3.jpg" alt="">
+            <img src="img/baner3.webp" alt="">
         </div>
 
     </div>
@@ -158,82 +161,129 @@
 
 </section>
 
-<!-- ================= CATEGORIAS ================= -->
 
-<section class="categorias">
+<!-- ================= CATEGORIAS ESTILO MEDIA MARKT ================= -->
 
-    <a href="./odinadors.html" class="categoria-link">
+<section class="categorias-grid">
 
-        <div class="categoria">
-            <p>💻 Ordenadores</p>
-        </div>
+    <!-- OFERTAS -->
+    <a href="ofertas.html" class="categoria-card">
 
-    </a>
+        <img src="img/ofertas.jpg" alt="">
 
-    <a href="./portatil.html" class="categoria-link">
-
-        <div class="categoria">
-            <p>🧳 Portátiles</p>
-        </div>
+        <h3>Campañas y promociones</h3>
 
     </a>
 
-    <a href="./movils.html" class="categoria-link">
+    <!-- ORDENADORES -->
+    <a href="./odinadors.html" class="categoria-card">
 
-        <div class="categoria">
-            <p>📱 Smartphones</p>
-        </div>
+        <img src="img/ordenadores.jpg" alt="">
 
-    </a>
-
-    <a href="./monitors.html" class="categoria-link">
-
-        <div class="categoria">
-            <p>🖥️ Monitores</p>
-        </div>
+        <h3>💻 Ordenadores</h3>
 
     </a>
 
-    <a href="./prefericos.html" class="categoria-link">
+    <!-- PORTATILES -->
+    <a href="./portatil.html" class="categoria-card">
 
-        <div class="categoria">
-            <p>⌨️ Periféricos</p>
-        </div>
+        <img src="img/portatiles.jpg" alt="">
 
-    </a>
-
-    <a href="./sonido.html" class="categoria-link">
-
-        <div class="categoria">
-            <p>🔊 Sonido</p>
-        </div>
+        <h3>🧳 Portátiles</h3>
 
     </a>
 
-    <a href="./tabletsirelojes.html" class="categoria-link">
+    <!-- MOVILES -->
+    <a href="./movils.html" class="categoria-card">
 
-        <div class="categoria">
-            <p>⌚ Tablets y relojes</p>
-        </div>
+        <img src="img/moviles.jpg" alt="">
 
-    </a>
-
-    <a href="./components.html" class="categoria-link">
-
-        <div class="categoria">
-            <p>🛠️ Componentes</p>
-        </div>
+        <h3>📱 Smartphones</h3>
 
     </a>
 
-    <a href="./consoles.html" class="categoria-link">
+    <!-- MONITORES -->
+    <a href="./monitors.html" class="categoria-card">
 
-        <div class="categoria">
-            <p>🎮 Gaming</p>
-        </div>
+        <img src="img/monitores.jpg" alt="">
+
+        <h3>🖥️ Monitores</h3>
 
     </a>
 
+    <!-- PERIFERICOS -->
+    <a href="./prefericos.html" class="categoria-card">
+
+        <img src="img/perifericos.jpg" alt="">
+
+        <h3>⌨️ Periféricos</h3>
+
+    </a>
+
+    <!-- SONIDO -->
+    <a href="./sonido.html" class="categoria-card">
+
+        <img src="img/sonido.jpg" alt="">
+
+        <h3>🔊 Sonido</h3>
+
+    </a>
+
+    <!-- TABLETS -->
+    <a href="./tabletsirelojes.html" class="categoria-card">
+
+        <img src="img/tablets.jpg" alt="">
+
+        <h3>⌚ Tablets y relojes</h3>
+
+    </a>
+
+    <!-- COMPONENTES -->
+    <a href="./components.html" class="categoria-card">
+
+        <img src="img/componentes.jpg" alt="">
+
+        <h3>🛠️ Componentes</h3>
+
+    </a>
+
+    <!-- GAMING -->
+    <a href="./consoles.html" class="categoria-card">
+
+        <img src="img/gaming.jpg" alt="">
+
+        <h3>🎮 Gaming</h3>
+
+    </a>
+
+       <a href="./consoles.html" class="categoria-card">
+
+        <img src="img/gaming.jpg" alt="">
+
+        <h3>🎮 Gaming</h3>
+
+    </a>
+       <a href="./consoles.html" class="categoria-card">
+
+        <img src="img/gaming.jpg" alt="">
+
+        <h3>🎮 Gaming</h3>
+
+    </a>
+       <a href="./consoles.html" class="categoria-card">
+
+        <img src="img/gaming.jpg" alt="">
+
+        <h3>🎮 Gaming</h3>
+
+    </a>
+       <a href="./consoles.html" class="categoria-card">
+
+        <img src="img/gaming.jpg" alt="">
+
+        <h3>🎮 Gaming</h3>
+
+    </a>
 </section>
 
 <!-- ================= FOOTER ================= -->
