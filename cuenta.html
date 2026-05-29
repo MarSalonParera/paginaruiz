@@ -13,69 +13,153 @@ rel="stylesheet">
 <!-- TU CSS -->
 <link 
 rel="stylesheet" 
-href="./css/style.css">
+href="">
 </head>
 <body>
-    <nav class="navbar navbar-custom">
+    
+<form class="container mt-5 mb-5">
 
-        <div class="container-fluid d-flex justify-content-between align-items-center">
+    <div class="card p-4">
 
-            <h2>Technologie  du roussillon</h2>
+        <div class="row">
+
+            <!-- NOMBRE -->
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Prénom *</label>
+                <input type="text" class="form-control" placeholder="Prénom">
+            </div>
+
+            <!-- APELLIDOS -->
+            <div class="col-md-6 mb-3">
+                <label class="form-label1">Nom *</label>
+                <input type="text" class="form-control" placeholder="Nom">
+            </div>
+
+            <!-- EMPRESA -->
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Entreprise *</label>
+                <input type="text" class="form-control" placeholder="Entreprise">
+            </div>
+
+            <!-- CIF -->
+            <div class="col-md-6 mb-3">
+                <label class="form-label1">N° TVA / SIRET *</label>
+                <input type="text" class="form-control" placeholder="Identifiant fiscal">
+            </div>
+
+            <!-- TELEFONO -->
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Téléphone *</label>
+                <input type="tel" class="form-control" placeholder="Téléphone">
+            </div>
+
+            <!-- EMAIL -->
+            <div class="col-md-6 mb-3">
+                <label class="form-label1">E-mail *</label>
+                <input type="email" class="form-control" placeholder="E-mail">
+            </div>
+
+            <!-- DIRECCION -->
+            <div class="col-12 mb-3">
+                <label class="form-label">Adresse *</label>
+                <input type="text" class="form-control" placeholder="Adresse">
+            </div>
+
+            <!-- CIUDAD -->
+            <div class="col-md-4 mb-3">
+                <label class="form-labe1">Ville *</label>
+                <input type="text" class="form-control" placeholder="Ville">
+            </div>
+
+            <!-- CODIGO POSTAL -->
+            <div class="col-md-4 mb-3">
+                <label class="form-label2">Code Postal *</label>
+                <input type="text" class="form-control" placeholder="Code Postal">
+            </div>
+
+            <!-- DEPARTAMENTO -->
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Département *</label>
+                <select class="form-select">
+
+                    <option>Sélectionner</option>
+                    <option>Pyrénées-Orientales (66)</option>
+                    <option>Aude (11)</option>
+                    <option>Hérault (34)</option>
+                    <option>Gard (30)</option>
+                    <option>Haute-Garonne (31)</option>
+
+                </select>
+            </div>
+
+            <!-- DOCUMENT TVA -->
+            <div class="col-12 mb-3">
+
+                <label class="form-label">
+                    Télécharger le certificat TVA *
+                </label>
+
+                <input type="file" class="form-control">
+
+                <small class="text-muted">
+                    Formats acceptés : PDF, JPG, PNG, GIF
+                </small>
+
+            </div>
+
+            <!-- CERTIFICADO REVENDEDOR -->
+            <div class="col-12 mb-3">
+
+                <label class="form-label">
+                    Télécharger le certificat de revendeur
+                </label>
+
+                <input type="file" class="form-control">
+
+                <small class="text-muted">
+                    Formats acceptés : PDF, JPG, PNG, GIF
+                </small>
+
+            </div>
+
+            <!-- CHECK -->
+            <div class="col-12 mb-4">
+
+                <div class="form-check">
+
+                    <input class="form-check-input" type="checkbox" id="conditions">
+
+                    <label class="form-label" for="conditions">
+
+                        J'ai lu et j'accepte les
+                        <a href="#">conditions générales</a>
+                        et la
+                        <a href="#">politique de confidentialité</a>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <!-- BOTON -->
+            <div class="col-12">
+
+                <button type="submit" class="class="btn btn-primary">
+
+                    Envoyer la demande
+
+                </button>
+
+            </div>
 
         </div>
-    </nav>
-<div class="container mt-5">
-    <h2>Mi cuenta</h2>
 
-    <div id="userBox" class="mb-4">
-        <!-- Info de usuario -->
     </div>
 
-    <h4>Pedidos</h4>
-    <div id="ordersBox"></div>
+</form>
 
-    <div class="mt-4">
-        <button id="logoutBtn" class="btn btn-secondary">Cerrar sesión</button>
-    </div>
 
-</div>
-<script src="./auth-cart.js"></script>
-<script>
-function renderAccount(){
-    const user = getCurrentUser();
-    const userBox = document.getElementById('userBox');
-    const ordersBox = document.getElementById('ordersBox');
-    if(!user){
-        userBox.innerHTML = '<p>No has iniciado sesión. <a href="inciarsession.html">Inicia sesión</a></p>';
-        ordersBox.innerHTML = '';
-        return;
-    }
-
-    userBox.innerHTML = `<p><strong>Nombre:</strong> ${user.name}</p><p><strong>Email:</strong> ${user.email}</p>`;
-
-    const ordersKey = 'orders_'+ user.id;
-    const orders = JSON.parse(localStorage.getItem(ordersKey) || '[]');
-    if(orders.length === 0) ordersBox.innerHTML = '<p>No tienes pedidos.</p>';
-    else{
-        ordersBox.innerHTML = '';
-        orders.slice().reverse().forEach(o=>{
-            const div = document.createElement('div');
-            div.className = 'card p-3 mb-2';
-            div.innerHTML = `<div><strong>${o.id}</strong> - ${new Date(o.date).toLocaleString()}</div><div>Total: ${o.total}€</div><div>Items: ${o.items.map(i=>i.name).join(', ')}</div>`;
-            ordersBox.appendChild(div);
-        });
-    }
-}
-
-document.getElementById('logoutBtn').addEventListener('click', ()=>{
-    signOut();
-    window.location.href = 'index.html';
-});
-
-document.addEventListener('DOMContentLoaded', ()=>{
-    renderAccount();
-});
-</script>
 <div class="footer">
     <footer class="bg-light text-center text-lg-start">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
