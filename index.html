@@ -114,29 +114,35 @@
 
         </div>
 
-        <!-- DERECHA -->
-        <div class="menu-derecha">
+       <div class="menu-derecha">
 
-            <!-- CUENTA -->
-            <a href="inciarsession.html">
+    <div class="cuenta-dropdown">
 
-                <div class="cuenta-box">
+        <div class="cuenta-box" id="cuentaBtn">
 
-                    <div class="perfil"></div>
+            <div class="perfil" id="perfilInicial">
+                M
+            </div>
 
-                    <span>
-                        MI CUENTA
-                    </span>
+            <span id="textoCuenta">
+                MI CUENTA
+            </span>
 
-                </div>
+            <span>▼</span>
 
-            </a>
+        </div>
 
-            <!-- CESTA -->
-            <a href="cesta.html">
+        <div class="dropdown-menu-cuenta" id="menuCuenta">
 
-                🛒 MI CESTA
-                <span id="cartCount">(0)</span>
+            <a href="#" id="cerrarSesion" class="logout-btn">
+
+                <span class="logout-icon">
+                    ⎋
+                </span>
+
+                <span>
+                    Cerrar sesión
+                </span>
 
             </a>
 
@@ -144,6 +150,16 @@
 
     </div>
 
+    <!-- CESTA -->
+
+    <a href="cesta.html">
+
+        🛒 MI CESTA
+        <span id="cartCount">(0)</span>
+
+    </a>
+
+</div>
 </nav>
 
 <!-- ================= SLIDER ================= -->
@@ -313,8 +329,73 @@
 
 </footer>
 
-<!-- JAVASCRIPT -->
 <script src="js/script.js"></script>
+<script>
 
+/* MOSTRAR EMPRESA */
+
+const empresa =
+localStorage.getItem("empresaNombre");
+
+const textoCuenta =
+document.getElementById("textoCuenta");
+
+const perfilInicial =
+document.getElementById("perfilInicial");
+
+if(empresa){
+
+    textoCuenta.textContent =
+    empresa;
+
+    perfilInicial.textContent =
+    empresa.charAt(0).toUpperCase();
+
+}
+
+/* MENU CUENTA */
+
+const cuentaBtn =
+document.getElementById("cuentaBtn");
+
+const menuCuenta =
+document.getElementById("menuCuenta");
+
+cuentaBtn.addEventListener("click", function(e){
+
+    e.stopPropagation();
+
+    menuCuenta.style.display =
+    menuCuenta.style.display === "block"
+    ? "none"
+    : "block";
+
+});
+
+/* CERRAR AL HACER CLICK FUERA */
+
+document.addEventListener("click", function(){
+
+    menuCuenta.style.display = "none";
+
+});
+
+/* CERRAR SESION */
+
+document.getElementById("cerrarSesion")
+.addEventListener("click", function(e){
+
+    e.preventDefault();
+
+    localStorage.removeItem("usuario");
+
+    window.location.href =
+    "inciarsession.html";
+
+});
+
+</script>
+</body>
+</html>
 </body>
 </html>

@@ -16,120 +16,82 @@ rel="stylesheet"
 href="">
 </head>
 <body>
-    
-<form class="container mt-5 mb-5">
+<form id="formulaire" class="container mt-5 mb-5">
 
     <div class="card p-4">
 
         <div class="row">
 
-            <!-- NOMBRE -->
             <div class="col-md-6 mb-3">
                 <label class="form-label">Prénom *</label>
-                <input type="text" class="form-control" placeholder="Prénom">
+                <input type="text" name="prenom" class="form-control" required>
             </div>
 
-            <!-- APELLIDOS -->
             <div class="col-md-6 mb-3">
-                <label class="form-label1">Nom *</label>
-                <input type="text" class="form-control" placeholder="Nom">
+                <label class="form-label">Nom *</label>
+                <input type="text" name="nom" class="form-control" required>
             </div>
 
-            <!-- EMPRESA -->
             <div class="col-md-6 mb-3">
                 <label class="form-label">Entreprise *</label>
-                <input type="text" class="form-control" placeholder="Entreprise">
+                <input type="text" name="entreprise" class="form-control" required>
             </div>
 
-            <!-- CIF -->
             <div class="col-md-6 mb-3">
-                <label class="form-label1">N° TVA / SIRET *</label>
-                <input type="text" class="form-control" placeholder="Identifiant fiscal">
+                <label class="form-label">N° TVA / SIRET *</label>
+                <input type="text" name="siret" class="form-control" required>
             </div>
 
-            <!-- TELEFONO -->
             <div class="col-md-6 mb-3">
                 <label class="form-label">Téléphone *</label>
-                <input type="tel" class="form-control" placeholder="Téléphone">
+                <input type="tel" name="telephone" class="form-control" required>
             </div>
 
-            <!-- EMAIL -->
             <div class="col-md-6 mb-3">
-                <label class="form-label1">E-mail *</label>
-                <input type="email" class="form-control" placeholder="E-mail">
+                <label class="form-label">E-mail *</label>
+                <input type="email" name="email" class="form-control" required>
             </div>
 
-            <!-- DIRECCION -->
             <div class="col-12 mb-3">
                 <label class="form-label">Adresse *</label>
-                <input type="text" class="form-control" placeholder="Adresse">
+                <input type="text" name="adresse" class="form-control" required>
             </div>
 
-            <!-- CIUDAD -->
             <div class="col-md-4 mb-3">
-                <label class="form-labe1">Ville *</label>
-                <input type="text" class="form-control" placeholder="Ville">
+                <label class="form-label">Ville *</label>
+                <input type="text" name="ville" class="form-control" required>
             </div>
 
-            <!-- CODIGO POSTAL -->
             <div class="col-md-4 mb-3">
-                <label class="form-label2">Code Postal *</label>
-                <input type="text" class="form-control" placeholder="Code Postal">
+                <label class="form-label">Code Postal *</label>
+                <input type="text" name="codepostal" class="form-control" required>
             </div>
 
-            <!-- DEPARTAMENTO -->
             <div class="col-md-4 mb-3">
                 <label class="form-label">Département *</label>
-                <select class="form-select">
 
-                    <option>Sélectionner</option>
+                <select name="departement" class="form-select" required>
+                    <option value="">Sélectionner</option>
                     <option>Pyrénées-Orientales (66)</option>
                     <option>Aude (11)</option>
                     <option>Hérault (34)</option>
                     <option>Gard (30)</option>
                     <option>Haute-Garonne (31)</option>
-
                 </select>
-            </div>
-
-            <!-- DOCUMENT TVA -->
-            <div class="col-12 mb-3">
-
-                <label class="form-label">
-                    Télécharger le certificat TVA *
-                </label>
-
-                <input type="file" class="form-control">
-
-                <small class="text-muted">
-                    Formats acceptés : PDF, JPG, PNG, GIF
-                </small>
 
             </div>
 
-            <!-- CERTIFICADO REVENDEDOR -->
-            <div class="col-12 mb-3">
-
-                <label class="form-label">
-                    Télécharger le certificat de revendeur
-                </label>
-
-                <input type="file" class="form-control">
-
-                <small class="text-muted">
-                    Formats acceptés : PDF, JPG, PNG, GIF
-                </small>
-
-            </div>
-
-            <!-- CHECK -->
             <div class="col-12 mb-4">
 
                 <div class="form-check">
 
-                    <input class="form-check-input" type="checkbox" id="conditions">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="conditions"
+                        required>
 
-                    <label class="form-label" for="conditions">
+                    <label class="form-check-label" for="conditions">
 
                         J'ai lu et j'accepte les
                         <a href="#">conditions générales</a>
@@ -142,13 +104,10 @@ href="">
 
             </div>
 
-            <!-- BOTON -->
             <div class="col-12">
 
-                <button type="submit" class="class="btn btn-primary">
-
+                <button type="submit" class="btn btn-primary">
                     Envoyer la demande
-
                 </button>
 
             </div>
@@ -168,5 +127,50 @@ href="">
         </div>
       </footer>
 </div>
+
+<script>
+
+document.getElementById("formulaire")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const entreprise =
+    document.querySelector('[name="entreprise"]').value;
+
+    const email =
+    document.querySelector('[name="email"]').value;
+
+    /* GUARDAR EMPRESA */
+
+    localStorage.setItem(
+        "empresaNombre",
+        entreprise
+    );
+
+    /* GUARDAR EMAIL */
+
+    localStorage.setItem(
+        "empresaEmail",
+        email
+    );
+
+    /* INICIAR SESION */
+
+    localStorage.setItem(
+        "usuario",
+        email
+    );
+
+    alert(
+        "Compte créé avec succès !"
+    );
+
+    window.location.href =
+    "index.html";
+
+});
+
+</script>
 </body>
 </html>
